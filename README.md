@@ -1,6 +1,6 @@
-# ✈️ SlyScanner - Monitoramento e Análise de Passagens Aéreas
+# ✈️ FlyFinder - Monitoramento e Análise de Passagens Aéreas
 
-O **SlyScanner** é uma aplicação moderna para monitoramento, análise e notificação de passagens aéreas com melhores preços. O sistema é composto por um backend em Java com Spring Boot (suporte a OAuth2, JWT e Redis) e um frontend em React, focado em performance, usabilidade e integração com APIs externas.
+O **FlyFinder  ** é uma aplicação moderna para monitoramento, análise e notificação de passagens aéreas com melhores preços. O sistema é composto por um backend em Java com Spring Boot (suporte a OAuth2, JWT e Redis) e um frontend em React, focado em performance, usabilidade e integração com APIs externas.
 
 ---
 
