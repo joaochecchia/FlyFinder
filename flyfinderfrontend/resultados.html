@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FlyFinder - Resultados da Busca</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Link para seu CSS personalizado -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="font-sans text-gray-800 bg-gray-50">
+
+    <!-- Cabeçalho para a página de resultados -->
+    <header class="bg-blue-800 text-white py-4 shadow-md">
+        <div class="container mx-auto px-4 flex justify-between items-center">
+            <a href="index.html" class="text-2xl font-bold">FlyFinder</a>
+    
+        </div>
+    </header>
+
+    <!-- Seção de Resultados da Busca -->
+    <main class="container mx-auto px-4 py-8">
+        <h1 class="text-3xl font-bold text-blue-800 mb-8 text-center">Resultados para sua Busca</h1>
+
+        <div class="flex flex-col md:flex-row gap-8">
+            <!-- Sidebar de Filtros -->
+            <aside class="md:w-1/4 bg-white p-6 rounded-lg shadow-md">
+                <h2 class="text-xl font-semibold mb-4 border-b pb-2 text-blue-700">Filtrar Resultados</h2>
+                <div class="space-y-4">
+                    <div>
+                        <label for="filtro-companhia" class="block text-sm font-medium text-gray-700">Companhia Aérea</label>
+                        <select id="filtro-companhia" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-blue-500 focus:border-blue-500">
+                            <option value="Todas">Todas</option>
+                            <option value="Latam Airlines">Latam Airlines</option>
+                            <option value="GOL Linhas Aéreas">GOL Linhas Aéreas</option>
+                            <option value="Azul Linhas Aéreas">Azul Linhas Aéreas</option>
+                            <!-- Adicione mais companhias conforme seu array JS -->
+                        </select>
+                    </div>
+                    <div>
+                        <label for="filtro-paradas" class="block text-sm font-medium text-gray-700">Paradas</label>
+                        <select id="filtro-paradas" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-blue-500 focus:border-blue-500">
+                            <option value="Qualquer">Qualquer</option>
+                            <option value="Direto">Direto</option>
+                            <option value="1 Parada">1 Parada</option>
+                            <option value="2+ Paradas">2+ Paradas</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="filtro-preco" class="block text-sm font-medium text-gray-700">Preço Máximo</label>
+                        <!-- ALTERADO: max e value para 5000 -->
+                        <input type="range" id="filtro-preco" min="100" max="5000" value="5000" class="w-full h-2 bg-blue-200 rounded-lg appearance-none cursor-pointer">
+                        <span id="valor-preco" class="text-sm text-gray-600">R$ 5000</span>
+                    </div>
+                    <button id="aplicar-filtros-btn" class="w-full bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-md transition duration-300">Aplicar Filtros</button>
+                    <button id="limpar-filtros-btn" class="w-full bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded-md transition duration-300">Limpar Filtros</button>
+                </div>
+            </aside>
+
+            <!-- Lista de Passagens Aéreas (será preenchida pelo JS) -->
+            <section class="md:w-3/4 space-y-6" id="lista-passagens">
+                <!-- Conteúdo será gerado dinamicamente pelo JavaScript -->
+            </section>
+        </div>
+    </main>
+
+    <!-- Footer (repetido para consistência) -->
+    <footer id="rodape" class="bg-gray-800 text-white py-10 mt-12">
+        <div class="container mx-auto px-4 grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-8">
+            <div>
+                <h3 class="font-bold text-lg mb-4 text-blue-400">FlyFinder</h3>
+                <ul class="space-y-2">
+                    <li><a href="#" class="text-gray-300 hover:text-white transition duration-300">Sobre Nós</a></li>
+                    <li><a href="#" class="text-gray-300 hover:text-white transition duration-300">Blog</a></li>
+                </ul>
+            </div>
+            <div>
+                <h3 class="font-bold text-lg mb-4 text-blue-400">Ajuda e Suporte</h3>
+                <ul class="space-y-2">
+                    <li><a href="#" class="text-gray-300 hover:text-white transition duration-300">FAQ</a></li>
+                    <li><a href="#" class="text-gray-300 hover:text-white transition duration-300">Central de Ajuda</a></li>
+                    <li><a href="#" class="text-gray-300 hover:text-white transition duration-300">Termos de Uso</a></li>
+                    <li><a href="#" class="text-gray-300 hover:text-white transition duration-300">Política de Privacidade</a></li>
+                </ul>
+            </div>
+              <div class="md:col-span-3 lg:col-span-1">
+                <h3 class="font-bold text-lg mb-4 text-blue-400">Contato</h3>
+                <p class="text-gray-300">Rua da Viagem, 123</p>
+                <p class="text-gray-300">Taguatinga, DF - CEP 12345-678</p>
+                <p class="text-gray-300">Email: contato@flyfinder.com</p>
+                <p class="text-gray-300">Telefone: (61) 1234-4321</p>
+            </div>
+            </div>
+        </div>
+        <div class="mt-10 pt-6 border-t border-gray-700 text-center text-gray-500 text-sm">
+            © 2025 FlyFinder. Todos os direitos reservados.
+        </div>           <li><a href="#" class="text-gray-300 hover:text-white transition duration-300">Contato</a></li>
+         
+    </footer>
+
+    <!-- Link para seu JavaScript (no final do body com 'defer') -->
+    <script defer src="js/script.js"></script>
+</body>
+</html>

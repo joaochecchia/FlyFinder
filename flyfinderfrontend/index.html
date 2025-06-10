@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FlyFinder - Passagens Aéreas no Melhor Preço</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Link para seu CSS personalizado (se precisar de algo específico) -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="font-sans text-gray-800 bg-gray-50">
+
+    <!-- Seção Hero (Cabeçalho com imagem e texto) -->
+   <section id="hero" class="relative bg-cover bg-center h-96 flex items-center justify-center text-white p-4" style="background-image: url('assets/img/ceu.png');">
+    <div class="absolute inset-0 bg-black opacity-50"></div>
+
+    <div class="relative text-center z-10">
+        <h1 class="text-4xl md:text-5xl font-bold leading-tight drop-shadow-lg">Passagens Aéreas no Melhor Preço</h1>
+        <a href="#formulario-busca" class="mt-8 inline-block bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-8 rounded-full shadow-lg transition duration-300 ease-in-out transform hover:scale-105">
+            Consultar Preço
+        </a>
+    </div>
+</section>
+
+    <!-- Formulário de Busca (abaixo do Hero) -->
+    <section id="formulario-busca" class="bg-white p-6 md:p-8 lg:p-10 shadow-lg rounded-lg mx-4 md:mx-auto max-w-4xl -mt-20 relative z-20">
+        <h2 class="text-2xl font-semibold mb-6 text-center text-blue-800">Encontre sua Passagem</h2>
+        <form class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4" id="form-pesquisa">
+            <div class="relative">
+                <label for="origem" class="block text-sm font-medium text-gray-700">Origem</label>
+                <input type="text" id="origem" name="origem" placeholder="Cidade de partida" 
+                       class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm" 
+                       required autocomplete="off">
+                <!-- Div para sugestões de autocomplete - será populada pelo JS -->
+                <div id="origem-suggestions" class="absolute z-30 bg-white border border-gray-300 rounded-md shadow-lg max-h-60 overflow-y-auto mt-1 w-full hidden"></div>
+            </div>
+            <div class="relative">
+                <label for="destino" class="block text-sm font-medium text-gray-700">Destino</label>
+                <input type="text" id="destino" name="destino" placeholder="Cidade de chegada" 
+                       class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm" 
+                       required autocomplete="off">
+                <!-- Div para sugestões de autocomplete - será populada pelo JS -->
+                <div id="destino-suggestions" class="absolute z-30 bg-white border border-gray-300 rounded-md shadow-lg max-h-60 overflow-y-auto mt-1 w-full hidden"></div>
+            </div>
+            <div>
+                <label for="data-ida" class="block text-sm font-medium text-gray-700">Data de Ida</label>
+                <!-- ALTERADO: type="date" para type="text" e adicionado placeholder -->
+                <input type="text" id="data-ida" name="data-ida" placeholder="dd/mm/aaaa"
+                       class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm" 
+                       required autocomplete="off">
+            </div>
+            <div id="div-data-volta">
+                <label for="data-volta" class="block text-sm font-medium text-gray-700">Data de Volta</label>
+                <!-- ALTERADO: type="date" para type="text" e adicionado placeholder -->
+                <input type="text" id="data-volta" name="data-volta" placeholder="dd/mm/aaaa"
+                       class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm" 
+                       autocomplete="off">
+            </div>
+            <div>
+                <label for="tipo-viagem" class="block text-sm font-medium text-gray-700">Tipo de Viagem</label>
+                <select id="tipo-viagem" name="tipo-viagem" 
+                        class="mt-1 block w-full pl-3 pr-10 py-2 text-base border border-gray-300 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm rounded-md"
+                        autocomplete="off">
+                    <option value="round-trip">Ida e Volta</option>
+                    <option value="one-way">Só Ida</option>
+                </select>
+            </div>
+
+            <!-- Div para exibir mensagens de erro com o novo estilo -->
+            <div class="col-span-full">
+                <div id="mensagem-erro-formulario" class="bg-red-100 border-l-4 border-red-500 text-red-700 p-4 rounded-md flex items-center space-x-2 hidden" role="alert">
+                    <svg class="h-5 w-5 text-red-500" fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0L14.873 7c.765 1.36-.202 3-1.743 3H6.874c-1.54 0-2.507-1.64-1.743-3L8.257 3.099zM10 12a1 1 0 100 2 1 1 0 000-2zm0 4a1 1 0 100 2 1 1 0 000-2z" clip-rule="evenodd"></path>
+                    </svg>
+                    <p></p> <!-- Este parágrafo será preenchido pelo JS -->
+                </div>
+            </div>
+
+            <div class="col-span-1 md:col-span-2 lg:col-span-1 flex items-end">
+                <button type="submit" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-4 rounded-md shadow-md transition duration-300 ease-in-out transform hover:scale-105">
+                    Buscar
+                </button>
+            </div>
+        </form>
+    </section>
+
+  <section id="parceiros" class="py-12 bg-white mt-12">
+    <h2 class="text-2xl font-semibold text-center mb-8 text-blue-800">Nossos Parceiros</h2>
+    <div class="flex flex-wrap justify-center items-center gap-8 md:gap-12 px-4">
+
+        <a href="https://www.trivago.com" target="_blank" rel="noopener">
+            <img src="assets/img/4 Trivago Logo.svg" alt="Logo Trivago" class="h-12 opacity-75 hover:opacity-100 transition-opacity duration-300">
+        </a>
+
+        <a href="https://www.expedia.com" target="_blank" rel="noopener">
+            <img src="assets/img/3 Expedia Logo.svg" alt="Logo Expedia" class="h-12 opacity-75 hover:opacity-100 transition-opacity duration-300">
+        </a>
+
+        <a href="https://www.booking.com" target="_blank" rel="noopener">
+            <img src="assets/img/2 Booking Logo.svg" alt="Logo Booking" class="h-12 opacity-75 hover:opacity-100 transition-opacity duration-300">
+        </a>
+
+         <a href="https://www.tripadvisor.com" target="_blank" rel="noopener">
+            <img src="assets/img/1 Tripadvisor Logo.svg" alt="Logo Booking" class="h-12 opacity-75 hover:opacity-100 transition-opacity duration-300">
+        </a>
+
+    </div>
+</section>
+
+
+    <section id="beneficios" class="py-16 bg-blue-50">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-12 text-blue-800">Conheça Nossos Benefícios</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-white rounded-lg shadow-lg p-6 text-center transform hover:scale-105 transition duration-300 ease-in-out">
+                    <div class="text-5xl text-blue-600 mb-4">🤑</div>
+                    <h3 class="text-xl font-semibold mb-2">Preços Imbatíveis</h3>
+                    <p class="text-gray-600">Encontre as melhores ofertas e economize em suas viagens. Nosso sistema busca os preços mais baixos para você.</p>
+                    <p class="text-2xl font-bold text-green-600 mt-4">A partir de R$ 342,67</p>
+                </div>
+                <div class="bg-white rounded-lg shadow-lg p-6 text-center transform hover:scale-105 transition duration-300 ease-in-out">
+                    <div class="text-5xl text-blue-600 mb-4">🌍</div>
+                    <h3 class="text-xl font-semibold mb-2">Destinos Incríveis</h3>
+                    <p class="text-gray-600">Explore o mundo com nossa ampla variedade de destinos e companhias aéreas parceiras.</p>
+                   
+                </div>
+                <div class="bg-white rounded-lg shadow-lg p-6 text-center transform hover:scale-105 transition duration-300 ease-in-out">
+                    <div class="text-5xl text-blue-600 mb-4">✈️</div>
+                    <h3 class="text-xl font-semibold mb-2">Sua Próxima Aventura</h3>
+                    <p class="text-gray-600">Planeje sua viagem com facilidade e comece sua próxima grande aventura com a gente.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer-->
+    <footer id="rodape" class="bg-gray-800 text-white py-10 mt-12">
+        <div class="container mx-auto px-4 grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-8">
+            <div>
+                <h3 class="font-bold text-lg mb-4 text-blue-400">FlyFinder</h3>
+                <ul class="space-y-2">
+                    <li><a href="#" class="text-gray-300 hover:text-white transition duration-300">Sobre Nós</a></li>
+                    <li><a href="#" class="text-gray-300 hover:text-white transition duration-300">Blog</a></li>
+                </ul>
+            </div>
+            <div>
+                <h3 class="font-bold text-lg mb-4 text-blue-400">Ajuda e Suporte</h3>
+                <ul class="space-y-2">
+                    <li><a href="#" class="text-gray-300 hover:text-white transition duration-300">FAQ</a></li>
+                    <li><a href="#" class="text-gray-300 hover:text-white transition duration-300">Central de Ajuda</a></li>
+                    <li><a href="#" class="text-gray-300 hover:text-white transition duration-300">Termos de Uso</a></li>
+                    <li><a href="#" class="text-gray-300 hover:text-white transition duration-300">Política de Privacidade</a></li>
+                </ul>
+            </div>
+              <div class="md:col-span-3 lg:col-span-1">
+                <h3 class="font-bold text-lg mb-4 text-blue-400">Contato</h3>
+                <p class="text-gray-300">Rua da Viagem, 123</p>
+                <p class="text-gray-300">Taguatinga, DF - CEP 12345-678</p>
+                <p class="text-gray-300">Email: contato@flyfinder.com</p>
+                <p class="text-gray-300">Telefone: (61) 1234-4321</p>
+            </div>
+            </div>
+        </div>
+        <div class="mt-10 pt-6 border-t border-gray-700 text-center text-gray-500 text-sm">
+            © 2025 FlyFinder. Todos os direitos reservados.
+        </div>           <li><a href="#" class="text-gray-300 hover:text-white transition duration-300">Contato</a></li>
+         
+    </footer>
+
+    <script defer src="js/script.js"></script>
+</body>
+</html>
