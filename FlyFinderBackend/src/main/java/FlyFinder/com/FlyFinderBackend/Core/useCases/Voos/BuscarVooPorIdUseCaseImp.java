@@ -1,4 +1,4 @@
-package FlyFinder.com.FlyFinderBackend.Core.useCases;
+package FlyFinder.com.FlyFinderBackend.Core.useCases.Voos;
 
 import FlyFinder.com.FlyFinderBackend.Core.Gateway.VoosGateway;
 import FlyFinder.com.FlyFinderBackend.Core.Responses.EncontrarVoosResponse;
@@ -17,5 +17,4 @@ public class BuscarVooPorIdUseCaseImp implements BuscarVooPorIdUseCase{
     public Optional<EncontrarVoosResponse> execute(Long id) {
         return voosGateway.encontrarVooPorId(id);
     }
-
 }

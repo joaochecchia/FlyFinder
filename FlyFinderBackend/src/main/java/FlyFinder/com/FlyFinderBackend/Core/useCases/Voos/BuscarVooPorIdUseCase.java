@@ -1,4 +1,4 @@
-package FlyFinder.com.FlyFinderBackend.Core.useCases;
+package FlyFinder.com.FlyFinderBackend.Core.useCases.Voos;
 
 import FlyFinder.com.FlyFinderBackend.Core.Responses.EncontrarVoosResponse;
 

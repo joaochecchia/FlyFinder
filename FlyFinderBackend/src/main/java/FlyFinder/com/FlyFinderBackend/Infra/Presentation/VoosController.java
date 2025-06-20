@@ -1,9 +1,7 @@
 package FlyFinder.com.FlyFinderBackend.Infra.Presentation;
 
-import FlyFinder.com.FlyFinderBackend.Core.Gateway.VoosGateway;
-import FlyFinder.com.FlyFinderBackend.Core.Request.EncontrarVoosRequest;
 import FlyFinder.com.FlyFinderBackend.Core.Responses.EncontrarVoosResponse;
-import FlyFinder.com.FlyFinderBackend.Core.useCases.*;
+import FlyFinder.com.FlyFinderBackend.Core.useCases.Voos.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -12,12 +10,12 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Objects;
 import java.util.Optional;
 
 @RestController
 @RequestMapping("/voos")
 @RequiredArgsConstructor
+
 public class VoosController{
 
     @Autowired

@@ -3,7 +3,7 @@ package FlyFinder.com.FlyFinderBackend.Infra.Gateway;
 import FlyFinder.com.FlyFinderBackend.Core.Gateway.VoosGateway;
 import FlyFinder.com.FlyFinderBackend.Core.Request.EncontrarVoosRequest;
 import FlyFinder.com.FlyFinderBackend.Core.Responses.EncontrarVoosResponse;
-import FlyFinder.com.FlyFinderBackend.Core.useCases.EncontrarVooUseCaseImp;
+import FlyFinder.com.FlyFinderBackend.Core.useCases.Voos.EncontrarVooUseCaseImp;
 import FlyFinder.com.FlyFinderBackend.Infra.Mapper.VoosMapper;
 import FlyFinder.com.FlyFinderBackend.Infra.Persistence.entities.VoosModel;
 import FlyFinder.com.FlyFinderBackend.Infra.Persistence.repository.VoosRepository;

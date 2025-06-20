@@ -2,7 +2,6 @@ package FlyFinder.com.FlyFinderBackend.Core.Gateway;
 
 import FlyFinder.com.FlyFinderBackend.Core.Request.EncontrarVoosRequest;
 import FlyFinder.com.FlyFinderBackend.Core.Responses.EncontrarVoosResponse;
-import FlyFinder.com.FlyFinderBackend.Core.useCases.EncontrarVooUseCaseImp;
 
 import java.util.Optional;
 

@@ -1,7 +1,6 @@
-package FlyFinder.com.FlyFinderBackend.Core.useCases;
+package FlyFinder.com.FlyFinderBackend.Core.useCases.Voos;
 
 import FlyFinder.com.FlyFinderBackend.Core.Gateway.VoosGateway;
-import FlyFinder.com.FlyFinderBackend.Infra.DTO.VoosDTO;
 
 public class DeletarVooUseCaseImp implements DeletarVooUseCase{
 

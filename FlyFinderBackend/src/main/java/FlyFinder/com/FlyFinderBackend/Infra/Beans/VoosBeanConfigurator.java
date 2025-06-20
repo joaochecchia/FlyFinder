@@ -1,8 +1,7 @@
 package FlyFinder.com.FlyFinderBackend.Infra.Beans;
 
 import FlyFinder.com.FlyFinderBackend.Core.Gateway.VoosGateway;
-import FlyFinder.com.FlyFinderBackend.Core.Request.EncontrarVoosRequest;
-import FlyFinder.com.FlyFinderBackend.Core.useCases.*;
+import FlyFinder.com.FlyFinderBackend.Core.useCases.Voos.*;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
